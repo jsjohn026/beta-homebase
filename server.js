@@ -4,6 +4,7 @@ const connectDB = require('./config/database')
 require('dotenv').config({path: './config/.env'})
 const PORT = process.env.PORT
 const homeRoutes = require('./routes/home')
+const orderRoutes = require('./routes/orders')
 
 connectDB()
 
@@ -13,6 +14,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 app.use('/', homeRoutes)
+app.use('/orders', orderRoutes)
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on ${PORT}`)
