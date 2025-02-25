@@ -9,8 +9,15 @@
 <body>
   <h1>Work Orders</h1>
   <ul>
-    <%  %>
+    <% orders.forEach( el => { %>
+      <li class="workOrder" data-id="<%= el._id %>">
+        <span class="<%= el.completed === true ? 'completed' : 'not' %>"><%= el.order %></span>
+        <span class="delete">Delete</span>
+      </li>
+    <% }) %>
   </ul>
+
+  <h2>Remaining work orders: <%= left %></h2>
 
   <form action="/orders/createOrder" method="POST">
     <input type="text" placeholder="Enter Work Order" name="workOrder">
