@@ -10,7 +10,6 @@ module.exports = {
       console.error("Unable to load orders page:" + error)
     }
   },
-
   createOrder: async (req, res) => {
     try {
       await Order.create({order: req.body.workOrder, completed: false})
@@ -18,6 +17,23 @@ module.exports = {
       res.redirect('/orders')
     } catch (error) {
       console.error("Unable to submit work order:" + error)
+    }
+  },
+  markComplete: async ( req, res ) => {
+    try {
+      
+    } catch (error) {
+      console.log("Unable to mark this order complete:" + error)
+    }
+  },
+  deleteOrder: async (req, res) => {
+    console.log(req.body.orderIdFromJSFile)
+    try {
+      await Order.findOneAndDelete({_id: req.body.orderIdFromJSFile})
+      console.log('Deleted Order')
+      res.json('Deleted Order')
+    } catch (error) {
+      console.error("Unable to delete order: " + error)
     }
   }
 }
